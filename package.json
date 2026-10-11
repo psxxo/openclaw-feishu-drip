@@ -1,0 +1,104 @@
+{
+  "name": "openclaw-feishu-drip",
+  "version": "2026.9.9-drip.1",
+  "description": "OpenClaw Feishu/Lark channel plugin for chats and workplace tools (community maintained by @m1heng).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "type": "module",
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "1.74.0",
+    "@openclaw/fs-safe": "0.21.1",
+    "mdast-util-from-markdown": "2.0.3",
+    "mdast-util-gfm-table": "2.0.0",
+    "micromark-extension-gfm-table": "2.1.2",
+    "typebox": "1.3.34",
+    "zod": "4.6.5"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.9.9"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "setupEntry": "./dist/setup-entry.js",
+    "channel": {
+      "id": "feishu",
+      "configuredState": {
+        "env": {
+          "anyOf": [
+            "FEISHU_APP_ID",
+            "FEISHU_APP_SECRET",
+            "FEISHU_VERIFICATION_TOKEN",
+            "FEISHU_ENCRYPT_KEY"
+          ]
+        },
+        "specifier": "./dist/configured-state.js",
+        "exportName": "hasConfiguredFeishuChannelState"
+      },
+      "label": "Feishu",
+      "selectionLabel": "Feishu/Lark (飞书)",
+      "docsPath": "/channels/feishu",
+      "docsLabel": "feishu",
+      "blurb": "飞书/Lark enterprise messaging with doc/wiki/drive tools.",
+      "aliases": [
+        "lark"
+      ],
+      "order": 35,
+      "quickstartAllowFrom": true,
+      "setup": {
+        "fields": []
+      }
+    },
+    "install": {
+      "clawhubSpec": "clawhub:@openclaw/feishu",
+      "npmSpec": "@openclaw/feishu",
+      "defaultChoice": "npm",
+      "minHostVersion": ">=2026.5.29"
+    },
+    "compat": {
+      "pluginApi": ">=2026.9.9"
+    },
+    "build": {
+      "bundledDist": false,
+      "openclawVersion": "2026.9.9"
+    },
+    "release": {
+      "publishToClawHub": true,
+      "publishToNpm": true
+    },
+    "runtimeExtensions": [
+      "./dist/index.js"
+    ],
+    "runtimeSetupEntry": "./dist/setup-entry.js"
+  },
+  "files": [
+    "dist/**",
+    "openclaw.plugin.json",
+    "README.md",
+    "assets/icon.png",
+    "assets/activity.svg",
+    "skills/**"
+  ],
+  "bundledDependencies": [
+    "@larksuiteoapi/node-sdk",
+    "@openclaw/fs-safe",
+    "mdast-util-from-markdown",
+    "mdast-util-gfm-table",
+    "micromark-extension-gfm-table",
+    "typebox",
+    "zod"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "psxxo (fork)",
+    "note": "Fork of @openclaw/feishu, MIT, OpenClaw Foundation; upstream community maintainer @m1heng"
+  }
+}
